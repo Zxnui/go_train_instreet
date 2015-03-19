@@ -5,12 +5,12 @@ import (
 )
 
 type Train struct {
-	Id            int
-	Name          string
-	Start_site_id int
-	End_site_id   int
-	Start_time    string
-	End_time      string
+	Id        int
+	Name      string
+	Full_name string
+	Train_no  string
+	Start_no  string
+	End_no    string
 }
 
 //func (m *Train) TableName() string {
@@ -49,8 +49,8 @@ func (m *Train) Query() orm.QuerySeter {
 	return orm.NewOrm().QueryTable(m)
 }
 
-func (m *Train) QueryNameAll() (int64, []orm.Params, error) {
-	var lists []orm.Params
-	num, err := orm.NewOrm().Raw("select name from train where id >(SELECT max(id) FROM train where start_time !='0000-00-00 00:00:00')").Values(&lists)
+func (m *Train) QueryAll() (int64, []Train, error) {
+	var lists []Train
+	num, err := orm.NewOrm().Raw("select id,name,full_name,train_no,start_no,end_no from train").QueryRows(&lists)
 	return num, lists, err
 }

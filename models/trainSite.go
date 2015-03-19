@@ -11,6 +11,7 @@ type TrainSite struct {
 	Start_time  string
 	Arrive_time string
 	Km          string
+	Station_no  string
 }
 
 //func (m *Site) TableName() string {
@@ -47,4 +48,10 @@ func (m *TrainSite) Delete() error {
 
 func (m *TrainSite) Query() orm.QuerySeter {
 	return orm.NewOrm().QueryTable(m)
+}
+
+func (m *TrainSite) QueryTwo(id int) (int64, []TrainSite, error) {
+	var item []TrainSite
+	num, err := orm.NewOrm().Raw("select id,train_id,site_id from train_site where train_id=?", id).QueryRows(&item)
+	return num, item, err
 }

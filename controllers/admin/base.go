@@ -1,13 +1,13 @@
 package admin
 
-import (
-	"github.com/astaxie/beego"
-)
+//import (
+//	"github.com/astaxie/beego"
+//)
 
-var Httpweb string
+//var Httpweb string
 
-func init() {
-	httpweb := beego.AppConfig.String("httpweb")
-	httpport := beego.AppConfig.String("httpport")
-	Httpweb = httpweb + ":" + httpport
-}
+//func init() {
+//	httpweb := beego.AppConfig.String("httpweb")
+//	httpport := beego.AppConfig.String("httpport")
+//	Httpweb = httpweb + ":" + httpport
+//}
